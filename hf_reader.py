@@ -48,7 +48,7 @@ if __name__ == "__main__":
                     "name":args.subset,
                     "split": args.split  # any other options that should be passed to load_dataset
                 },
-                streaming=False,
+                streaming=True,
                 limit = args.limit,
                 text_key=args.text_key,  # the column that actually contains the text to be tokenized
             ),

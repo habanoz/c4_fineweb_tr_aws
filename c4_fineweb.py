@@ -23,6 +23,9 @@ stop_words = ['bir', 'bu', 'da', 'daha', 'de', 'en', 'gibi', 'göre', 'her', 'il
 
 args = parser.parse_args()
 
+import nltk
+nltk.download('punkt_tab')
+  
 if __name__ == "__main__":
 
     """

@@ -19,6 +19,6 @@ echo "Installing dependencies"
 pip3 install -q -r requirements.txt
 
 echo "Running script"
-python3 hf_reader.py -sb tr -s train -ts 32 --random_start 0 --limit 1000 allenai/c4 "s3://$1/tokenize-dir"
+python3 hf_reader.py -sb tr -s train -ts 32 --random_start 0 --limit 32150 allenai/c4 "s3://$1/tokenize-dir"
 
 echo "Done!"
