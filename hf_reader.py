@@ -48,14 +48,14 @@ if __name__ == "__main__":
                     "name":args.subset,
                     "split": args.split  # any other options that should be passed to load_dataset
                 },
-                streaming=True,
+                streaming=False,
                 limit = args.limit,
                 text_key=args.text_key,  # the column that actually contains the text to be tokenized
             ),
-            JsonlWriter(f"{DATA_INPUT_PATH}/output/{OUT_DS_NAME}"),
+            JsonlWriter(f"{DATA_INPUT_PATH}/output"),
         ],
         tasks=args.tasks,
-        logging_dir=f"{MAIN_OUTPUT_PATH}/logs/data_input/{OUT_DS_NAME}",
+        logging_dir=f"{MAIN_OUTPUT_PATH}/logs/data_input",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start
     )

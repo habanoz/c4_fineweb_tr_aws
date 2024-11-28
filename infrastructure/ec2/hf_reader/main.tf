@@ -76,7 +76,7 @@ resource "aws_spot_instance_request" "worker" {
   instance_type          = "c8g.4xlarge"
   spot_type              = "one-time"
   wait_for_fulfillment   = true
-  spot_price            = "0.0638"  # Set your maximum spot price
+  spot_price            = "0.0645"  # Set your maximum spot price
   
   subnet_id             = data.aws_subnet.selected.id
   # IAM role if needed
@@ -97,7 +97,7 @@ resource "aws_spot_instance_request" "worker" {
 
 data "aws_subnet" "selected" {
   vpc_id            = data.aws_vpc.default.id
-  availability_zone = "us-east-1b"
+  availability_zone = "us-east-1c"
 }
 
 # get default vpc
