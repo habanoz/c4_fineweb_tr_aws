@@ -40,11 +40,11 @@ if __name__ == "__main__":
 
     main_processing_executor = LocalPipelineExecutor(
         pipeline=[
-           JsonlReader(f"{DATA_INPUT_PATH}/output/{OUT_DS_NAME}"),
+           JsonlReader(f"{DATA_INPUT_PATH}/output"),
             GopherRepetitionFilter(
                 language = Languages.turkish,
                 exclusion_writer=JsonlWriter(
-                    f"{FILTERING_OUTPUT_PATH}/removed/3_gopher_rep/{OUT_DS_NAME}")
+                    f"{FILTERING_OUTPUT_PATH}/removed/3_gopher_rep")
             ),
             GopherQualityFilter(
                 stop_words=stop_words,
@@ -52,23 +52,23 @@ if __name__ == "__main__":
                 language = Languages.turkish,
                 max_non_alpha_words_ratio = 0.75,
                 exclusion_writer=JsonlWriter(
-                    f"{FILTERING_OUTPUT_PATH}/removed/4_gopher_qual/{OUT_DS_NAME}")
+                    f"{FILTERING_OUTPUT_PATH}/removed/4_gopher_qual")
             ),
             C4QualityFilter(
                 filter_no_terminal_punct=False,
                 language = Languages.turkish,
                 exclusion_writer=JsonlWriter(
-                    f"{FILTERING_OUTPUT_PATH}/removed/5_c4/{OUT_DS_NAME}"),
+                    f"{FILTERING_OUTPUT_PATH}/removed/5_c4"),
             ),
             FineWebQualityFilter(
                 language = Languages.turkish,
                 exclusion_writer=JsonlWriter(
-                    f"{FILTERING_OUTPUT_PATH}/removed/6_fineweb_qual/{OUT_DS_NAME}")
+                    f"{FILTERING_OUTPUT_PATH}/removed/6_fineweb_qual")
             ),
-            JsonlWriter(f"{FILTERING_OUTPUT_PATH}/output/{OUT_DS_NAME}"),
+            JsonlWriter(f"{FILTERING_OUTPUT_PATH}/output"),
         ],
         tasks=args.tasks,
-        logging_dir=f"{MAIN_OUTPUT_PATH}/logs/base_processing/{OUT_DS_NAME}",
+        logging_dir=f"{MAIN_OUTPUT_PATH}/logs/base_processing",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start
     )
