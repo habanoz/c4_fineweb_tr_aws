@@ -1,0 +1,12 @@
+ #!/bin/bash
+echo "### Starting initialization..."
+AWS_REGION="${REGION}"
+AWS_BUCKET="${BUCKET}"
+echo "### AWS region $AWS_REGION"
+echo "### Bucket $AWS_BUCKET"
+git clone https://github.com/habanoz/fineweb_tr_aws.git
+cd fineweb_tr_aws
+chmod +x run_reader.sh
+./run.sh "$AWS_BUCKET"
+chmod +x terminate_instance.sh
+./terminate_instance.sh "$AWS_REGION"
