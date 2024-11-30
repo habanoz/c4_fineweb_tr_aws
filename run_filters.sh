@@ -19,6 +19,6 @@ echo "Installing dependencies"
 pip3 install -q -r requirements.txt
 
 echo "Running script"
-python3 c4_fineweb.py -ts 192 --random_start 0 "s3://$1/tokenize-dir"
+python3 c4_fineweb.py -ts 1024 -w 192 --random_start 0 "s3://$1/tokenize-dir"
 
 echo "Done!"
