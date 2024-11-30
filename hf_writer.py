@@ -14,20 +14,22 @@ parser.add_argument("-w", "--workers", type=int, help="Number of tasks to run. 1
 parser.add_argument("-rs", "--random_start", type=int, help="Random start time delay in seconds", default=180)
 args = parser.parse_args()
 
+local_dir = tempfile.TemporaryDirectory()
+
 if __name__ == "__main__":
     hf_to_json_executor = LocalPipelineExecutor(
         pipeline=[
             JsonlReader(args.input_path),
             HuggingFaceDatasetWriter(
                 dataset=args.dataset, 
-                local_working_dir=f"{args.output_path}/temp",
+                local_working_dir=local_dir.name,
                 cleanup=True
             ),
             
         ],
         tasks=args.tasks,
         workers=args.workers,
-        logging_dir=f"{args.output_path}/logs",
+        logging_dir=f"{args.output_path}/logs/data_input",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start
     )
