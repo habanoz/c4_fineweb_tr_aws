@@ -73,10 +73,10 @@ resource "aws_iam_role" "spot_instance_role" {
 # Create spot instance request
 resource "aws_spot_instance_request" "worker" {
   ami                    = "ami-0325498274077fac5"
-  instance_type          = "c8g.24xlarge"
+  instance_type          = "c8g.2xlarge"
   spot_type              = "one-time"
   wait_for_fulfillment   = true
-  spot_price            = "0.4331"  # Set your maximum spot price
+  spot_price            = "0.0335"  # Set your maximum spot price
   
   subnet_id             = data.aws_subnet.selected.id
   # IAM role if needed
