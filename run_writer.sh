@@ -19,6 +19,8 @@ echo "Installing dependencies"
 pip3 install -q -r requirements.txt
 
 echo "Running script"
-python3 hf-writer.py -ts 1024 -w 4 --random_start 0 "s3://$1/tokenize-dir/base_processing/output/" work habanoz/c4_tr_fineweb
+huggingface-cli login --token "$2"
+export HF_HUB_ENABLE_HF_TRANSFER=1
+python3 hf_writer.py -ts 1024 -w 4 --random_start 0 "s3://$1/tokenize-dir/base_processing/output/" work habanoz/c4_tr_fineweb
 
 echo "Done!"

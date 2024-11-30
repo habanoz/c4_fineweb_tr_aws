@@ -1,1 +1,2 @@
 datatrove[processing,s3,io]@git+https://github.com/habanoz/datatrove.git
+hf_transfer
