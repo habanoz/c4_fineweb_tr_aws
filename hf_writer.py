@@ -29,7 +29,7 @@ if __name__ == "__main__":
         ],
         tasks=args.tasks,
         workers=args.workers,
-        logging_dir=f"{args.output_path}/logs/data_input",
+        logging_dir=f"{args.output_path}/logs/data_output",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start
     )
