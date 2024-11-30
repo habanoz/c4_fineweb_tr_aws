@@ -12,7 +12,7 @@ parser.add_argument(
 
 parser.add_argument("-sb", "--subset", type=str, help="dataset subset.")
 parser.add_argument("-s", "--split", type=str, help="dataset split. `train` by default", default="train")
-parser.add_argument("-lm", "--limit", type=int, help="Limit number of rows to process", default=0)
+parser.add_argument("-lm", "--limit", type=int, help="Limit number of rows to process", default=-1)
 parser.add_argument(
     "-tk",
     "--text_key",
