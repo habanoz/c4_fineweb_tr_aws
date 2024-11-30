@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "output_bucket" {
   description = "s3 bucket to store output"
   type        = string
-  default     = "tokenize-bucket20241128115927938200000001"
+  default     = "tokenize-bucket20241130064257132900000001"
 }
 
 # Configure AWS Provider
@@ -73,10 +73,10 @@ resource "aws_iam_role" "spot_instance_role" {
 # Create spot instance request
 resource "aws_spot_instance_request" "worker" {
   ami                    = "ami-0325498274077fac5"
-  instance_type          = "c8g.8xlarge"
+  instance_type          = "c8g.48xlarge"
   spot_type              = "one-time"
   wait_for_fulfillment   = true
-  spot_price            = "0.1284"  # Set your maximum spot price
+  spot_price            = "0.8157"  # Set your maximum spot price
   
   subnet_id             = data.aws_subnet.selected.id
   # IAM role if needed
@@ -97,7 +97,7 @@ resource "aws_spot_instance_request" "worker" {
 
 data "aws_subnet" "selected" {
   vpc_id            = data.aws_vpc.default.id
-  availability_zone = "us-east-1d"
+  availability_zone = "us-east-1a"
 }
 
 # get default vpc

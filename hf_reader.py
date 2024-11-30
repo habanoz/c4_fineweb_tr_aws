@@ -23,7 +23,7 @@ parser.add_argument(
 
 parser.add_argument("-ts", "--tasks", type=int, help="Number of tasks to run. 1000 by default", default=1000)
 parser.add_argument("-rs", "--random_start", type=int, help="Random start time delay in seconds", default=180)
-
+parser.add_argument("-w", "--workers", type=int, help="Random start time delay in seconds", default=-1)
 args = parser.parse_args()
 
 if __name__ == "__main__":
@@ -55,6 +55,9 @@ if __name__ == "__main__":
             JsonlWriter(f"{DATA_INPUT_PATH}/output"),
         ],
         tasks=args.tasks,
+        #local_rank_offset=i*n_cpus,
+        #local_tasks=n_cpus,
+        workers=args.workers,
         logging_dir=f"{MAIN_OUTPUT_PATH}/logs/data_input",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start

@@ -18,6 +18,7 @@ parser.add_argument(
 )
 parser.add_argument("-ts", "--tasks", type=int, help="Number of tasks to run. 1000 by default", default=1000)
 parser.add_argument("-rs", "--random_start", type=int, help="Random start time delay in seconds", default=180)
+parser.add_argument("-w", "--workers", type=int, help="Random start time delay in seconds", default=-1)
 
 stop_words = ['bir', 'bu', 'da', 'daha', 'de', 'en', 'gibi', 'göre', 'her', 'ile', 'ise', 'için', 'kadar', 'olan', 'olarak', 've', 'çok', "tarafından", "ilgili", "üzere", "bu", "şu", "o", "tüm", "veya"]
 
@@ -71,6 +72,7 @@ if __name__ == "__main__":
             JsonlWriter(f"{FILTERING_OUTPUT_PATH}/output"),
         ],
         tasks=args.tasks,
+        workers=args.workers,
         logging_dir=f"{MAIN_OUTPUT_PATH}/logs/base_processing",
         # don't hit the bucket all at once with the list requests
         randomize_start_duration=args.random_start
