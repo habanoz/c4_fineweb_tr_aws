@@ -22,6 +22,7 @@ if __name__ == "__main__":
             JsonlReader(args.input_path),
             HuggingFaceDatasetWriter(
                 dataset=args.dataset, 
+                compression="gzip",
                 local_working_dir=local_dir.name,
                 cleanup=True
             ),
