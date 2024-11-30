@@ -29,9 +29,6 @@ nltk.download('punkt_tab')
   
 if __name__ == "__main__":
 
-    """
-        we first ran the following pipeline for each dump
-    """
     OUT_DS_NAME = args.output_path
     
     # we first ran the following pipeline for each dump

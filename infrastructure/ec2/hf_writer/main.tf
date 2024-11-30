@@ -10,6 +10,12 @@ variable "output_bucket" {
   default     = "tokenize-bucket20241130064257132900000001"
 }
 
+variable "hf_token" {
+  description = "Huggingface token"
+  type        = string
+  sensitive   = true
+}
+
 # Configure AWS Provider
 provider "aws" {
   region = var.aws_region
@@ -73,10 +79,10 @@ resource "aws_iam_role" "spot_instance_role" {
 # Create spot instance request
 resource "aws_spot_instance_request" "worker" {
   ami                    = "ami-0325498274077fac5"
-  instance_type          = "c8g.16xlarge"
+  instance_type          = "c8g.2xlarge"
   spot_type              = "one-time"
   wait_for_fulfillment   = true
-  spot_price            = "0.2716"  # Set your maximum spot price
+  spot_price            = "0.0342"  # Set your maximum spot price
   
   subnet_id             = data.aws_subnet.selected.id
   # IAM role if needed
@@ -87,7 +93,8 @@ resource "aws_spot_instance_request" "worker" {
   
   user_data = templatefile("${path.module}/init.tftpl", {
     REGION = var.aws_region,
-    BUCKET = var.output_bucket
+    BUCKET = var.output_bucket,
+    HF_TOKEN = var.hf_token
   })
 
   tags = {
