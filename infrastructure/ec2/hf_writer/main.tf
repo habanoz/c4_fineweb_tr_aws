@@ -79,10 +79,10 @@ resource "aws_iam_role" "spot_instance_role" {
 # Create spot instance request
 resource "aws_spot_instance_request" "worker" {
   ami                    = "ami-0325498274077fac5"
-  instance_type          = "c8g.medium"
+  instance_type          = "c8g.large"
   spot_type              = "one-time"
   wait_for_fulfillment   = true
-  spot_price            = "0.0044"  # Set your maximum spot price
+  spot_price            = "0.0089"  # Set your maximum spot price
   
   subnet_id             = data.aws_subnet.selected.id
   # IAM role if needed
@@ -104,7 +104,7 @@ resource "aws_spot_instance_request" "worker" {
 
 data "aws_subnet" "selected" {
   vpc_id            = data.aws_vpc.default.id
-  availability_zone = "us-east-1d"
+  availability_zone = "us-east-1a"
 }
 
 # get default vpc
