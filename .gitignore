@@ -7,3 +7,4 @@ __pycache__
 terraform.tfstate
 .terraform.tfstate.lock.info
 my_temp*
+habanoz_c4_tr_fineweb_plus
